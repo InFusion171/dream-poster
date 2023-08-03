@@ -1,0 +1,22 @@
+.header__container{
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-left: 2rem;
+}
+
+.header__text p{
+    font-size: 25px;
+}
+
+.header__text li{
+    margin-top: 0.8rem;
+}
+
+.header__text{
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-size: 17px;
+}
