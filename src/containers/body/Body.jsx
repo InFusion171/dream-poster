@@ -5,14 +5,12 @@ const Body = () => {
   const [inputXValue, setInputXValue] = useState("");
   const [inputYValue, setInputYValue] = useState("");
 
+  const inputTextFieldRef = useRef(null);
   const outputTextFieldRef = useRef(null);
 
-  /*let textArea = document.getElementById("input-text-field");
-
-  textArea.addEventListener("input", function(){
-    if(textArea.scrollTop != 0)
-      textArea.style.height = textArea.scrollHeight + "px";
-  });*/
+  function handleClick(e){
+    outputTextFieldRef.current.value = inputTextFieldRef.current.value;
+  }
 
   return (
     <div className="body__container">
@@ -64,27 +62,31 @@ const Body = () => {
               disabled
               name="output-text-field"
               id="output-text-field"
-
+              ref={outputTextFieldRef}
+              onChange={(e) =>{
+                e.target.style.height = "inherit"; 
+                e.target.style.height = `${e.target.scrollHeight}px`; 
+                alert("tst");  
+              }}
             />
           </div>
-          <div className="body__text-frame__text-input" contentEditable="true">
+          <div className="body__text-frame__text-input">
             <textarea 
-              disabled
               name="input-text-field" 
               id="input-text-field" 
               placeholder="Beschreiben hier dein Poster" 
               rows="1"
-              ref={outputTextFieldRef} 
+              ref={inputTextFieldRef} 
               onChange={(e) =>{
                 e.target.style.height = "inherit"; 
-                e.target.style.height = `${e.target.scrollHeight}px`;   
+                e.target.style.height = `${e.target.scrollHeight}px`; 
               }}
               />
 
           </div>
         </div>
         <div className="body__create-button">
-          <button type="button" id="create-button">Persönliches Poster jetzt erstellen</button>
+          <button type="button" id="create-button" onClick={handleClick}>Persönliches Poster jetzt erstellen</button>
         </div>
         <div className="body__buy-button">
           <button type="button" id="buy-button">Jetzt bestellen</button>
