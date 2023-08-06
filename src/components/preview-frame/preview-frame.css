@@ -1,0 +1,7 @@
+.body__preview-frame{
+    width: 800px;
+    height: 800px;
+    border-radius: var(--border-radius);
+    background: var(--background-color-frame);
+    box-shadow: var(--box-shadow);
+}

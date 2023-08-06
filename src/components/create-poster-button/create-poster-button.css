@@ -1,0 +1,11 @@
+.body__create-button{
+    display: flex;
+    justify-content: center;
+}
+
+.body__create-button button{
+    background: var(--button-color);
+
+    min-height: 2rem;
+    padding: 0.2rem 0.2rem;
+}

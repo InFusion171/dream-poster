@@ -1,0 +1,55 @@
+.body__text-frame{
+    display: flex;
+    flex-direction: column;
+ 
+    justify-content: flex-end;
+
+    align-self: stretch;
+    height: auto;
+    min-height: 150px;
+    border-radius: 10px;
+    background: var(--background-color-frame);
+    box-shadow: var(--box-shadow);
+}
+
+.body__text-frame__text-output{
+    flex: 0 0 150px;
+    height: 100%;
+    margin: 1rem 1rem 1rem 1rem; 
+}
+
+.body__text-frame__text-output textarea{
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 0.5rem;
+    resize: none;
+    
+    box-sizing: border-box;
+    
+    cursor: default;
+
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: var(--background-color);
+  
+    word-break: anywhere;
+    overflow: scroll;
+}
+
+.body__text-frame__text-input textarea{
+    width: 100%;
+    resize: none;
+    
+    box-sizing: border-box;
+    outline: 0px;
+    border: none;
+    border-radius: 0px 0px 10px 10px;
+    background-color: var(--button-color);
+
+    cursor: text;
+    
+    text-align: left;
+    word-break: anywhere;
+    overflow: hidden;
+}

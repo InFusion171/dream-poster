@@ -1,0 +1,50 @@
+.body__settings-frame{
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    background: var(--background-color-frame);
+    box-shadow: var(--box-shadow);
+}
+
+.body__settings-frame div{
+    margin: 1rem 1rem;
+}
+
+.body__settings-frame__settings-material{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.body__settings-frame__settings-material select{
+    background: var(--button-color);
+    padding: 0.3rem 0.3rem;
+}
+
+.body__settings-frame__settings-size{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.body__settings-frame__settings-size input{
+    height: 1.5rem;
+    width: 3rem;
+
+    outline: 0px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+
+    background: var(--button-color);
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+
+    cursor: text;
+
+    text-align: center;
+}
