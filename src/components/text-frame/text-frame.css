@@ -40,7 +40,8 @@
 .body__text-frame__text-input textarea{
     width: 100%;
     resize: none;
-    
+    padding-left: 5px;
+
     box-sizing: border-box;
     outline: 0px;
     border: none;
