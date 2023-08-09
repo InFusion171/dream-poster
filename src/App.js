@@ -11,7 +11,6 @@ const App = () => {
     <div className="App">
         <div>
             <Navbar />
-            <hr />
             <Header />
             <Body />
             <Footer />

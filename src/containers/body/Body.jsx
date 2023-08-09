@@ -17,6 +17,7 @@ const Body = () => {
 
   const handleClick = useCallback(() => {
     outputTextFieldRef.current.value = inputTextFieldRef.current.value;
+    inputTextFieldRef.current.value = "";
   }, []);
 
 

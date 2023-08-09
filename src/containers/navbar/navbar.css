@@ -7,7 +7,7 @@ a{
     display: flex;
     flex-direction: row;
     
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 
     padding: 0 2rem;
@@ -24,9 +24,9 @@ a{
     font-size: 20px;
     color: var(--text-color);
 
-    margin-left: 2rem;
+    margin-left: 4rem;
 }
-
+/*
 .navbar__sign-in button{
     font-family: var(--font-family);
     color: var(--text-color);
@@ -46,7 +46,7 @@ a{
     flex: 1;
     justify-content: flex-end;
 }
-
+*/
 @media screen and (max-width: 550px){
     .navbar__container{
         display: flex;

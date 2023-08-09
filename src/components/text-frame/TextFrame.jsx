@@ -4,7 +4,7 @@ import "./text-frame.css"
 
 const TextFrame = ({inputTextFieldRef, outputTextFieldRef}) => {
     
-  const setHeightToScrollheight = (e) => {
+  const setHeightToScrollHeight = (e) => {
     e.target.style.height = "inherit"; 
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
@@ -27,7 +27,7 @@ const TextFrame = ({inputTextFieldRef, outputTextFieldRef}) => {
             placeholder="Beschreiben hier dein Poster" 
             rows="1"
             ref={inputTextFieldRef} 
-            onChange={setHeightToScrollheight} />
+            onChange={setHeightToScrollHeight} />
         </div>
       </div>
     </>
