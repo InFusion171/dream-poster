@@ -1,16 +1,27 @@
-import React from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 
 import "./settings-frame.css"
 import "../../index.css"
 
 
-const SettingsFrame = ({useStateInputX, useStateInputY}) => {  
+const SettingsFrame = ({callback}) => {  
+
+  const useStateInputX = useState("");
+  const useStateInputY = useState("");
+
+  const [inputX, setInputX] = useStateInputX;
+  const [inputY, setInputY] = useStateInputY;
+
+  const materialOptionsRef = useRef(null);
+
+  callback(inputX, inputY, materialOptionsRef);
+
   return (
     <>
       <div className="body__settings-frame">
         <div className="body__settings-frame__settings-material body-text-properties select-properties">
           <p>Material</p>
-          <select name="material" id="material-options">
+          <select name="material-options" id="material-options" ref={materialOptionsRef}>
             <option value="Poster">Poster</option>
             <option value="Leinwand">Leinwand</option>
           </select>
@@ -24,9 +35,9 @@ const SettingsFrame = ({useStateInputX, useStateInputY}) => {
             id="x-size" 
             maxLength="3" 
             onChange={(e) => {
-            useStateInputX[1](e.target.value.replace(/^0|\D+/, ""));
-              }} 
-            value={useStateInputX[0]}/>
+              setInputX(e.target.value.replace(/^0|\D+/, ""));
+            }}
+            value={inputX} />
 
           <p>cm</p>
         </div>
@@ -39,9 +50,9 @@ const SettingsFrame = ({useStateInputX, useStateInputY}) => {
             id="y-size" 
             maxLength="3" 
             onChange={(e) => {
-            useStateInputY[1](e.target.value.replace(/^0|\D+/, ""));
-              }} 
-            value={useStateInputY[0]}/>
+              setInputY(e.target.value.replace(/^0|\D+/, ""));
+            }}
+            value={inputY} />
 
           <p>cm</p>
         </div>

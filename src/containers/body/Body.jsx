@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState, useEffect } from 'react'
 
 import PreviewFrame from '../../components/preview-frame/PreviewFrame';
 import SettingsFrame from '../../components/settings-frame/SettingsFrame';
@@ -7,18 +7,30 @@ import CreatePosterButton from '../../components/create-poster-button/CreatePost
 import BuyButton from '../../components/buy-button/BuyButton';
 
 import "./body.css";
+import { useNavigate } from 'react-router-dom';
 
 const Body = () => {
-  const useStateInputX = useState("");
-  const useStateInputY = useState("");
 
   const inputTextFieldRef = useRef(null);
   const outputTextFieldRef = useRef(null);
 
+  const navigate = useNavigate();
+
+  var widthValue = null;
+  var heightValue = null;
+  var materialOptionRef = null;
+
   const handleClick = useCallback(() => {
     outputTextFieldRef.current.value = inputTextFieldRef.current.value;
-    inputTextFieldRef.current.value = "";
+    inputTextFieldRef.current.value = "";    
   }, []);
+
+  const callbackSettingsFrame = (inputX, inputY, materialOptionsRef) => {
+    widthValue = inputX;
+    heightValue = inputY;
+    materialOptionRef = materialOptionsRef;
+  };
+
 
 
   return (
@@ -26,14 +38,13 @@ const Body = () => {
       <div className="body__container__contents">
         <div className="body__container__preview-settings-frame">
           <PreviewFrame />
-          <SettingsFrame useStateInputX={useStateInputX}
-                         useStateInputY={useStateInputY} />
+          <SettingsFrame callback={callbackSettingsFrame}/>
         </div>
           <TextFrame inputTextFieldRef={inputTextFieldRef} 
                      outputTextFieldRef={outputTextFieldRef} />
           
           <CreatePosterButton handleClick={handleClick} />
-          <BuyButton handleClick={()=>{/*Placeholder func*/}} />
+          <BuyButton handleClick={()=>{navigate("/bestellung")}} />
       </div>
     </div>
   )

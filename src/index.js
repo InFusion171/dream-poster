@@ -9,6 +9,7 @@ import {
 import App from "./App";
 import "./index.css";
 import About from "./Pages/about/About";
+import Checkout from "./Pages/checkout/Checkout";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
         path: "about",
         element: <About />
     },
+    {
+      path: "bestellung",
+      element: <Checkout />
+    }
   ]);
   
 const Index = () => {
