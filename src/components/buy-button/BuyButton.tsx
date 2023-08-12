@@ -3,7 +3,7 @@ import React from 'react'
 import "./buy-button.css"
 import "../../index.css";
 
-const BuyButton = ({handleClick}) => {
+const BuyButton = ({handleClick}: any) => {
   return (
     <>
       <div className="body__buy-button body-text-properties button-properties">

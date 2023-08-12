@@ -11,8 +11,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Body = () => {
 
-  const inputTextFieldRef = useRef(null);
-  const outputTextFieldRef = useRef(null);
+  const inputTextFieldRef = useRef<HTMLInputElement>(null);
+  const outputTextFieldRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
 
@@ -21,11 +21,14 @@ const Body = () => {
   var materialOptionRef = null;
 
   const handleClick = useCallback(() => {
+    if(outputTextFieldRef.current === null || inputTextFieldRef.current == null)
+      return;
+
     outputTextFieldRef.current.value = inputTextFieldRef.current.value;
     inputTextFieldRef.current.value = "";    
   }, []);
 
-  const callbackSettingsFrame = (inputX, inputY, materialOptionsRef) => {
+  const callbackSettingsFrame = (inputX: number, inputY: number, materialOptionsRef: any) => {
     widthValue = inputX;
     heightValue = inputY;
     materialOptionRef = materialOptionsRef;

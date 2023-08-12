@@ -3,7 +3,7 @@ import React from 'react'
 import "./create-poster-button.css"
 import "../../index.css"
 
-const CreatePosterButton = ({handleClick}) => {
+const CreatePosterButton = ({handleClick}: any) => {
   return (
     <>
       <div className="body__create-button button-properties body-text-properties">

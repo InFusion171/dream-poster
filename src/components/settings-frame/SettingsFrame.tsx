@@ -4,7 +4,7 @@ import "./settings-frame.css"
 import "../../index.css"
 
 
-const SettingsFrame = ({callback}) => {  
+const SettingsFrame = ({callback}: any) => {  
 
   const useStateInputX = useState("");
   const useStateInputY = useState("");
@@ -33,7 +33,7 @@ const SettingsFrame = ({callback}) => {
             type="textfield" 
             name="x-size" 
             id="x-size" 
-            maxLength="3" 
+            maxLength={3} 
             onChange={(e) => {
               setInputX(e.target.value.replace(/^0|\D+/, ""));
             }}
@@ -48,7 +48,7 @@ const SettingsFrame = ({callback}) => {
             type="textfield" 
             name="y-size" 
             id="y-size" 
-            maxLength="3" 
+            maxLength={3} 
             onChange={(e) => {
               setInputY(e.target.value.replace(/^0|\D+/, ""));
             }}

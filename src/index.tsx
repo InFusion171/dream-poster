@@ -8,8 +8,8 @@ import {
 
 import App from "./App";
 import "./index.css";
-import About from "./Pages/about/About";
-import Checkout from "./Pages/checkout/Checkout";
+import About from "./pages/about/About";
+import Checkout from "./pages/checkout/Checkout";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +34,10 @@ const Index = () => {
   )
 }
 
-const root = createRoot(document.getElementById("root"));
+const rootElement = document.getElementById("root");
+
+if (!rootElement) throw new Error('Failed to find the root element');
+
+const root = createRoot(rootElement);
 
 root.render(<Index />);

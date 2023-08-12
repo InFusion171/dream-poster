@@ -2,9 +2,9 @@ import React from 'react'
 
 import "./text-frame.css"
 
-const TextFrame = ({inputTextFieldRef, outputTextFieldRef}) => {
+const TextFrame = ({inputTextFieldRef, outputTextFieldRef}: any) => {
     
-  const setHeightToScrollHeight = (e) => {
+  const setHeightToScrollHeight = (e: any) => {
     e.target.style.height = "inherit"; 
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
@@ -25,7 +25,7 @@ const TextFrame = ({inputTextFieldRef, outputTextFieldRef}) => {
             name="input-text-field" 
             id="input-text-field" 
             placeholder="Beschreiben hier dein Poster" 
-            rows="1"
+            rows={1}
             ref={inputTextFieldRef} 
             onChange={setHeightToScrollHeight} />
         </div>
