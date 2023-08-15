@@ -5,6 +5,7 @@ import SettingsFrame from '../../components/settings-frame/SettingsFrame';
 import TextFrame from '../../components/text-frame/TextFrame';
 import CreatePosterButton from '../../components/create-poster-button/CreatePosterButton';
 import BuyButton from '../../components/buy-button/BuyButton';
+import ImageUploadButton from '../../components/image-upload-button/ImageUploadButton';
 
 import "./body.css";
 import { useNavigate } from 'react-router-dom';
@@ -51,6 +52,7 @@ const Body = () => {
   return (
     <div className="body__container">
       <div className="body__container__contents">
+          <ImageUploadButton />
         <div className="body__container__preview-settings-frame">
           <PreviewFrame />
           <SettingsFrame callback={callbackSettingsFrame}/>

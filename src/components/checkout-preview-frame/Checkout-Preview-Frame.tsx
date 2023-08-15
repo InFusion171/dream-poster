@@ -24,11 +24,22 @@ const CheckoutPreviewFrame = () => {
   return (
     <>
       <div className="checkout-preview-frame__container">
-      <p>Warenkorb</p>
+      <h1>Warenkorb</h1>
         <div className="checkout-preview-frame__wrapper">
-          <DivWithBodyHeadbar 
-          headContent={<p>test</p>}
-          bodyContent={<p>123</p>} />
+          <table>
+            <tr>
+              <th>Vorschau</th>
+              <th>Artikel</th>
+              <th>Ändern</th>
+              <th>Menge</th>
+              <th>Gesamtpreis</th>
+            </tr>
+            <tr>
+              <td><div className="checkout-preview-frame__preview-frame"></div></td>
+              <td>Poster 12 x 13 cm</td>
+              <td><p>Bearbeiten</p> <br /> <p>Löschen</p></td>
+            </tr>
+          </table>
         </div>
       </div>
     </>

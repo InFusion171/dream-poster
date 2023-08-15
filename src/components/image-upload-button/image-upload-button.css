@@ -1,0 +1,7 @@
+.image-upload-button__container{
+    margin-bottom: -2rem;
+}
+
+.image-upload-button__container button{
+    background: var(--button-color);
+}
