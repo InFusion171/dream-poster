@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { RefObject, useRef } from 'react'
 
 import "./text-frame.css"
 
-const TextFrame = ({inputTextFieldRef, outputTextFieldRef}: any) => {
+interface ICallbackTextFrame{
+  callback: (outputRef: RefObject<HTMLTextAreaElement>, inputRef: RefObject<HTMLTextAreaElement>) => void;
+}
+
+const TextFrame = ({callback}: ICallbackTextFrame) => {
     
+  const inputTextFieldRef = useRef<HTMLTextAreaElement>(null);
+  const outputTextFieldRef = useRef<HTMLTextAreaElement>(null);
+
+
   const setHeightToScrollHeight = (e: any) => {
     e.target.style.height = "inherit"; 
     e.target.style.height = `${e.target.scrollHeight}px`;
   }
+
+  callback(outputTextFieldRef, inputTextFieldRef);
 
   return (
     <>

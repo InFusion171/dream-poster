@@ -1,15 +1,10 @@
-button{
-    transition-property: font-size;
-    transition-duration: 0.3s;
-}
 
 .body__container{
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin-top: 4rem;
-    box-sizing: border-box;
+    margin-top: 4rem; 
 }
 
 .body__container__contents{

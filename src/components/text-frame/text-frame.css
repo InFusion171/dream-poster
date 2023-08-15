@@ -15,7 +15,7 @@
 .body__text-frame__text-output{
     flex: 0 0 150px;
     height: 100%;
-    margin: 1rem 1rem 1rem 1rem; 
+    margin: 1rem; 
 }
 
 .body__text-frame__text-output textarea{

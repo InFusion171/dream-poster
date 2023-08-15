@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState, useEffect } from 'react'
+import React, { useCallback, useRef, useState, useEffect, RefObject } from 'react'
 
 import PreviewFrame from '../../components/preview-frame/PreviewFrame';
 import SettingsFrame from '../../components/settings-frame/SettingsFrame';
@@ -11,29 +11,41 @@ import { useNavigate } from 'react-router-dom';
 
 const Body = () => {
 
-  const inputTextFieldRef = useRef<HTMLInputElement>(null);
-  const outputTextFieldRef = useRef<HTMLInputElement>(null);
-
   const navigate = useNavigate();
 
-  var widthValue = null;
-  var heightValue = null;
-  var materialOptionRef = null;
+  var widthValue: number;
+  var heightValue: number;
+  var materialOptionRef: RefObject<HTMLSelectElement>;
+  var inputTextRef: RefObject<HTMLTextAreaElement>;
+  var outputTextRef: RefObject<HTMLTextAreaElement>;
 
-  const handleClick = useCallback(() => {
-    if(outputTextFieldRef.current === null || inputTextFieldRef.current == null)
-      return;
+  const sanatizeHTML = (input: string) => {
+  
+    //regex: match anything except "&#[0-9]+;"
+    return input.replaceAll(/[^(&#){1}\d+;]/gi, (c) => {
+      return "&#" + c.charCodeAt(0) + ";";
+    });
+  }
 
-    outputTextFieldRef.current.value = inputTextFieldRef.current.value;
-    inputTextFieldRef.current.value = "";    
-  }, []);
-
-  const callbackSettingsFrame = (inputX: number, inputY: number, materialOptionsRef: any) => {
+  const callbackSettingsFrame = (inputX: number, inputY: number, materialOptionsRef: RefObject<HTMLSelectElement>) => {
     widthValue = inputX;
     heightValue = inputY;
     materialOptionRef = materialOptionsRef;
   };
 
+  const callbackTextFrame = (outputRef: RefObject<HTMLTextAreaElement>, inputRef: RefObject<HTMLTextAreaElement>) => {
+    outputTextRef = outputRef;
+    inputTextRef = inputRef;
+  }
+
+  const moveInputTextToOutputText = () => {
+    if(inputTextRef.current === null || outputTextRef.current === null)
+      return;
+
+    outputTextRef.current.value = sanatizeHTML(inputTextRef.current.value);
+    inputTextRef.current.value = "";    
+    inputTextRef.current.style.height = "inherit";
+  };
 
 
   return (
@@ -43,11 +55,10 @@ const Body = () => {
           <PreviewFrame />
           <SettingsFrame callback={callbackSettingsFrame}/>
         </div>
-          <TextFrame inputTextFieldRef={inputTextFieldRef} 
-                     outputTextFieldRef={outputTextFieldRef} />
+          <TextFrame callback={callbackTextFrame} />
           
-          <CreatePosterButton handleClick={handleClick} />
-          <BuyButton handleClick={()=>{navigate("/bestellung")}} />
+          <CreatePosterButton onClick={moveInputTextToOutputText} />
+          <BuyButton onClick={()=>{navigate("/bestellung")}} />
       </div>
     </div>
   )

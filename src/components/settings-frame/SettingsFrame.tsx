@@ -1,10 +1,13 @@
-import React, {useRef, useState, useEffect} from 'react'
+import React, {useRef, useState, RefObject} from 'react'
 
 import "./settings-frame.css"
 import "../../index.css"
 
+interface ICallbackSettingsFrame {
+  callback: (inputX: number, inputY: number, materialOption: RefObject<HTMLSelectElement>) => void;
+}
 
-const SettingsFrame = ({callback}: any) => {  
+const SettingsFrame = ({callback}: ICallbackSettingsFrame) => {  
 
   const useStateInputX = useState("");
   const useStateInputY = useState("");
@@ -12,9 +15,9 @@ const SettingsFrame = ({callback}: any) => {
   const [inputX, setInputX] = useStateInputX;
   const [inputY, setInputY] = useStateInputY;
 
-  const materialOptionsRef = useRef(null);
+  const materialOptionsRef = useRef<HTMLSelectElement>(null);
 
-  callback(inputX, inputY, materialOptionsRef);
+  callback(parseInt(inputX), parseInt(inputY), materialOptionsRef);
 
   return (
     <>
