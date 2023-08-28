@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState, useEffect, RefObject } from 'react'
+import sanitizeHtml from 'sanitize-html';
 
 import PreviewFrame from '../../components/preview-frame/PreviewFrame';
 import SettingsFrame from '../../components/settings-frame/SettingsFrame';
@@ -10,6 +11,14 @@ import ImageUploadButton from '../../components/image-upload-button/ImageUploadB
 import "./body.css";
 import { useNavigate } from 'react-router-dom';
 
+interface PosterData{
+  material: string;
+  width: number;
+  height: number;
+  posterDiscription: string;
+  posterId?: string;
+}
+
 const Body = () => {
 
   const navigate = useNavigate();
@@ -19,14 +28,6 @@ const Body = () => {
   var materialOptionRef: RefObject<HTMLSelectElement>;
   var inputTextRef: RefObject<HTMLTextAreaElement>;
   var outputTextRef: RefObject<HTMLTextAreaElement>;
-
-  const sanatizeHTML = (input: string) => {
-  
-    //regex: match anything except "&#[0-9]+;"
-    return input.replaceAll(/[^(&#){1}\d+;]/gi, (c) => {
-      return "&#" + c.charCodeAt(0) + ";";
-    });
-  }
 
   const callbackSettingsFrame = (inputX: number, inputY: number, materialOptionsRef: RefObject<HTMLSelectElement>) => {
     widthValue = inputX;
@@ -43,11 +44,35 @@ const Body = () => {
     if(inputTextRef.current === null || outputTextRef.current === null)
       return;
 
-    outputTextRef.current.value = sanatizeHTML(inputTextRef.current.value);
+    outputTextRef.current.value = sanitizeHtml(inputTextRef.current.value);
     inputTextRef.current.value = "";    
     inputTextRef.current.style.height = "inherit";
   };
 
+  async function postPosterData(url: string, data: PosterData) {
+    return await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if(!response.ok)
+          console.log(response.statusText);
+      
+        return response.json();
+        })
+  }
+
+  function onClickPosterButton(): void {
+    moveInputTextToOutputText();
+
+    var posterData: PosterData = {material: materialOptionRef.current === null ? "" : materialOptionRef.current.value,
+                                  width: widthValue,
+                                  height: heightValue,
+                                  posterDiscription: outputTextRef.current === null ? "" : outputTextRef.current.value}
+
+   postPosterData("http://192.168.111.88:8080/create", posterData);
+  } 
 
   return (
     <div className="body__container">
@@ -58,8 +83,7 @@ const Body = () => {
           <SettingsFrame callback={callbackSettingsFrame}/>
         </div>
           <TextFrame callback={callbackTextFrame} />
-          
-          <CreatePosterButton onClick={moveInputTextToOutputText} />
+          <CreatePosterButton onClick={onClickPosterButton} />
           <BuyButton onClick={()=>{navigate("/bestellung")}} />
       </div>
     </div>
