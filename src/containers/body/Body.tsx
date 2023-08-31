@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState, useEffect, RefObject } from 'react'
-import sanitizeHtml from 'sanitize-html';
+import { useNavigate } from 'react-router-dom';
 
 import PreviewFrame from '../../components/preview-frame/PreviewFrame';
 import SettingsFrame from '../../components/settings-frame/SettingsFrame';
@@ -9,69 +9,30 @@ import BuyButton from '../../components/buy-button/BuyButton';
 import ImageUploadButton from '../../components/image-upload-button/ImageUploadButton';
 
 import "./body.css";
-import { useNavigate } from 'react-router-dom';
-
-interface PosterData{
-  material: string;
-  width: number;
-  height: number;
-  posterDiscription: string;
-  posterId?: string;
-}
+import postPosterData from '../../network/Network';
+import {IPosterData, ISettingsFrameData} from '../../types/DataTypes'
+import SettingsFrameDataManager from '../../manager/SettingsFrameDataManager';
 
 const Body = () => {
 
   const navigate = useNavigate();
+  const settingsFrameDataManager = new SettingsFrameDataManager();
 
-  var widthValue: number;
-  var heightValue: number;
-  var materialOptionRef: RefObject<HTMLSelectElement>;
-  var inputTextRef: RefObject<HTMLTextAreaElement>;
-  var outputTextRef: RefObject<HTMLTextAreaElement>;
-
-  const callbackSettingsFrame = (inputX: number, inputY: number, materialOptionsRef: RefObject<HTMLSelectElement>) => {
-    widthValue = inputX;
-    heightValue = inputY;
-    materialOptionRef = materialOptionsRef;
-  };
+  const callbackSettingsFrame = (inputWidth: number, inputHeight: number, materialOptionsRef: RefObject<HTMLSelectElement>) => {
+    settingsFrameDataManager.width(inputWidth);
+    settingsFrameDataManager.height(inputHeight);
+    settingsFrameDataManager.material(materialOptionsRef);
+  }
 
   const callbackTextFrame = (outputRef: RefObject<HTMLTextAreaElement>, inputRef: RefObject<HTMLTextAreaElement>) => {
-    outputTextRef = outputRef;
-    inputTextRef = inputRef;
+    settingsFrameDataManager.outputText(outputRef);
+    settingsFrameDataManager.inputText(inputRef);
   }
 
-  const moveInputTextToOutputText = () => {
-    if(inputTextRef.current === null || outputTextRef.current === null)
-      return;
 
-    outputTextRef.current.value = sanitizeHtml(inputTextRef.current.value);
-    inputTextRef.current.value = "";    
-    inputTextRef.current.style.height = "inherit";
-  };
-
-  async function postPosterData(url: string, data: PosterData) {
-    return await fetch(url, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    })
-      .then(response => {
-        if(!response.ok)
-          console.log(response.statusText);
-      
-        return response.json();
-        })
-  }
-
-  function onClickPosterButton(): void {
-    moveInputTextToOutputText();
-
-    var posterData: PosterData = {material: materialOptionRef.current === null ? "" : materialOptionRef.current.value,
-                                  width: widthValue,
-                                  height: heightValue,
-                                  posterDiscription: outputTextRef.current === null ? "" : outputTextRef.current.value}
-
-   postPosterData("http://192.168.111.88:8080/create", posterData);
+  const onClickCreatePosterButton = (): void => {
+    settingsFrameDataManager.moveInputTextToOutputText();
+    settingsFrameDataManager.sendData("http://192.168.111.88:8080/create");
   } 
 
   return (
@@ -83,7 +44,7 @@ const Body = () => {
           <SettingsFrame callback={callbackSettingsFrame}/>
         </div>
           <TextFrame callback={callbackTextFrame} />
-          <CreatePosterButton onClick={onClickPosterButton} />
+          <CreatePosterButton onClick={onClickCreatePosterButton} />
           <BuyButton onClick={()=>{navigate("/bestellung")}} />
       </div>
     </div>

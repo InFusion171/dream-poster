@@ -2,22 +2,20 @@ import React, {useRef, useState, RefObject} from 'react'
 
 import "./settings-frame.css"
 import "../../index.css"
+import { ICallbackSettingsFrame } from '../../types/DataTypes';
 
-interface ICallbackSettingsFrame {
-  callback: (inputX: number, inputY: number, materialOption: RefObject<HTMLSelectElement>) => void;
-}
 
 const SettingsFrame = ({callback}: ICallbackSettingsFrame) => {  
 
-  const useStateInputX = useState("");
-  const useStateInputY = useState("");
+  const useStateInputWidth = useState("");
+  const useStateInputHeight = useState("");
 
-  const [inputX, setInputX] = useStateInputX;
-  const [inputY, setInputY] = useStateInputY;
+  const [inputWidth, setInputX] = useStateInputWidth;
+  const [inputHeight, setInputY] = useStateInputHeight;
 
   const materialOptionsRef = useRef<HTMLSelectElement>(null);
 
-  callback(parseInt(inputX), parseInt(inputY), materialOptionsRef);
+  callback(parseInt(inputWidth), parseInt(inputHeight), materialOptionsRef);
 
   return (
     <>
@@ -40,7 +38,7 @@ const SettingsFrame = ({callback}: ICallbackSettingsFrame) => {
             onChange={(e) => {
               setInputX(e.target.value.replace(/^0|\D+/, ""));
             }}
-            value={inputX} />
+            value={inputWidth} />
 
           <p>cm</p>
         </div>
@@ -55,7 +53,7 @@ const SettingsFrame = ({callback}: ICallbackSettingsFrame) => {
             onChange={(e) => {
               setInputY(e.target.value.replace(/^0|\D+/, ""));
             }}
-            value={inputY} />
+            value={inputHeight} />
 
           <p>cm</p>
         </div>
