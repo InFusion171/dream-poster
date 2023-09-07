@@ -18,8 +18,12 @@
 }
 
 .body__settings-frame__settings-material select{
-    background: var(--button-color);
+    background-color: var(--button-color);
     padding: 0.3rem 0.3rem;
+}
+
+.body__settings-frame__settings-material select:hover{
+    background-color: var(--button-color-hover);
 }
 
 .body__settings-frame__settings-size{
@@ -48,3 +52,4 @@
 
     text-align: center;
 }
+

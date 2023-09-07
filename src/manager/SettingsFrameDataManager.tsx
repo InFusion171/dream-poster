@@ -89,7 +89,7 @@ class SettingsFrameDataManager {
         this.settingsFrameData.inputTextRef.current.style.height = "inherit";
     }
     
-    sendData(url: string) {
+    async sendPosterData(url: string) {
         this.settingsFrameDataToPosterData();
 
         if(!this.isValidPosterData())
@@ -98,7 +98,7 @@ class SettingsFrameDataManager {
             return;
         }
 
-        postPosterData(url, this.posterData);
+        return await postPosterData(url, this.posterData);
     }
 }
 

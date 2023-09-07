@@ -1,6 +1,5 @@
 .body__buy-button{
     align-self: stretch;
-    
 }
 
 .body__buy-button button{
@@ -9,7 +8,8 @@
     width: 100%;
     min-height: 2rem;
     padding: 0.2rem 0.2rem;
+}
 
-    
-
+.body__buy-button button:hover {
+    background-color: var(--buy-button-color-hover);
 }

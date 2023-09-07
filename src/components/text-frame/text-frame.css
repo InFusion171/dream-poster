@@ -37,6 +37,10 @@
     overflow: scroll;
 }
 
+.body__text-frame__text-input{
+    margin: 0;
+}
+
 .body__text-frame__text-input textarea{
     width: 100%;
     resize: none;

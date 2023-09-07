@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState, useEffect, RefObject } from 'react'
+import React, { RefObject, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import PreviewFrame from '../../components/preview-frame/PreviewFrame';
@@ -9,14 +9,13 @@ import BuyButton from '../../components/buy-button/BuyButton';
 import ImageUploadButton from '../../components/image-upload-button/ImageUploadButton';
 
 import "./body.css";
-import postPosterData from '../../network/Network';
-import {IPosterData, ISettingsFrameData} from '../../types/DataTypes'
 import SettingsFrameDataManager from '../../manager/SettingsFrameDataManager';
 
 const Body = () => {
 
   const navigate = useNavigate();
   const settingsFrameDataManager = new SettingsFrameDataManager();
+  const [posterId, setPosterId] = useState("");
 
   const callbackSettingsFrame = (inputWidth: number, inputHeight: number, materialOptionsRef: RefObject<HTMLSelectElement>) => {
     settingsFrameDataManager.width(inputWidth);
@@ -29,11 +28,12 @@ const Body = () => {
     settingsFrameDataManager.inputText(inputRef);
   }
 
-
-  const onClickCreatePosterButton = (): void => {
+  const onClickCreatePosterButton = async () => {
     settingsFrameDataManager.moveInputTextToOutputText();
-    settingsFrameDataManager.sendData("http://192.168.111.88:8080/create");
+    setPosterId(JSON.stringify(await settingsFrameDataManager.sendPosterData("http://192.168.111.88:8080/create")));
   } 
+
+  //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
 
   return (
     <div className="body__container">

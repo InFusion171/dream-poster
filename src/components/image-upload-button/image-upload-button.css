@@ -5,3 +5,7 @@
 .image-upload-button__container button{
     background: var(--button-color);
 }
+
+.image-upload-button__container button:hover{
+    background-color: var(--button-color-hover);
+}
