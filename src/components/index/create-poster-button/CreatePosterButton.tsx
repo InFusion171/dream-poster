@@ -1,7 +1,7 @@
 import React from 'react'
 
 import "./create-poster-button.css"
-import "../../index.css"
+import "../../../index.css";
 
 const CreatePosterButton = ({onClick}: any) => {
   return (

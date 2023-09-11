@@ -23,23 +23,31 @@ h3{
 .checkout-preview-frame__container{
     display: flex;
     flex-direction: column;
-}
 
-.checkout-preview-frame__container > p{
-    font-size: 2rem;
-    margin-left: 2rem;
-    margin-top: 2rem;
+    align-items: center;
+
+    margin-top: 4rem;
 }
 
 .checkout-preview-frame__wrapper{
     display: flex;
 
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
+    width: 100%;
+
     background: var(--background-color-frame);
     border-radius: var(--border-radius);
+}
+
+.checkout-preview-frame__wrapper th{
+    padding: 0.5rem;
+}
+
+.checkout-preview-frame__wrapper td{
+    text-align: left;
 }
 
 .checkout-preview-frame__preview-frame{

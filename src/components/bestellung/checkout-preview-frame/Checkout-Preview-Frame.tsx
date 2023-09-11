@@ -1,7 +1,7 @@
 import React from 'react'
 
 import "./checkout-preview-frame.css";
-import "../../index.css";
+import "../../../index.css";
 
 const DivWithBodyHeadbar = ({headContent, bodyContent}:  any) => {
 
@@ -20,11 +20,10 @@ const DivWithBodyHeadbar = ({headContent, bodyContent}:  any) => {
 
 const CheckoutPreviewFrame = () => {
   
-  
   return (
     <>
-      <div className="checkout-preview-frame__container">
       <h1>Warenkorb</h1>
+      <div className="checkout-preview-frame__container">
         <div className="checkout-preview-frame__wrapper">
           <table>
             <tr>
@@ -35,7 +34,9 @@ const CheckoutPreviewFrame = () => {
             </tr>
             <tr>
               <td><div className="checkout-preview-frame__preview-frame"></div></td>
-              <td>Poster 12 x 13 cm</td>
+              <td><div className="checkout-preview-frame__preview-frame"></div></td>
+              <td><div className="checkout-preview-frame__preview-frame"></div></td>
+              <td><div className="checkout-preview-frame__preview-frame"></div></td>
             </tr>
           </table>
         </div>

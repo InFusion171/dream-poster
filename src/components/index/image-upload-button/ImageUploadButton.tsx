@@ -1,7 +1,7 @@
 import React from 'react';
 
 import "./image-upload-button.css";
-import "../../index.css";
+import "../../../index.css";
 
 const ImageUploadButton = () => {
   return (

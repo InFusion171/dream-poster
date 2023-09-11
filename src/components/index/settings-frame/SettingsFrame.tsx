@@ -1,8 +1,8 @@
 import React, {useRef, useState, RefObject} from 'react'
 
 import "./settings-frame.css"
-import "../../index.css"
-import { ICallbackSettingsFrame } from '../../types/DataTypes';
+import "../../../index.css";
+import { ICallbackSettingsFrame } from '../../../types/DataTypes';
 
 
 const SettingsFrame = ({callback}: ICallbackSettingsFrame) => {  

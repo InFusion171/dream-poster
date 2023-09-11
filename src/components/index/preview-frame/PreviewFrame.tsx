@@ -1,6 +1,7 @@
 import React from 'react';
 
 import "./preview-frame.css";
+import "../../../index.css";
 
 const PreviewFrame = () => {
   return (

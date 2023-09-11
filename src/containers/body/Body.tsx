@@ -1,12 +1,12 @@
 import React, { RefObject, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import PreviewFrame from '../../components/preview-frame/PreviewFrame';
-import SettingsFrame from '../../components/settings-frame/SettingsFrame';
-import TextFrame from '../../components/text-frame/TextFrame';
-import CreatePosterButton from '../../components/create-poster-button/CreatePosterButton';
-import BuyButton from '../../components/buy-button/BuyButton';
-import ImageUploadButton from '../../components/image-upload-button/ImageUploadButton';
+import PreviewFrame from '../../components/index/preview-frame/PreviewFrame';
+import SettingsFrame from '../../components/index/settings-frame/SettingsFrame';
+import TextFrame from '../../components/index/text-frame/TextFrame';
+import CreatePosterButton from '../../components/index/create-poster-button/CreatePosterButton';
+import BuyButton from '../../components/index/buy-button/BuyButton';
+import ImageUploadButton from '../../components/index/image-upload-button/ImageUploadButton';
 
 import "./body.css";
 import SettingsFrameDataManager from '../../manager/SettingsFrameDataManager';
